@@ -1,4 +1,4 @@
-<?php require(__DIR__.'../functions/functions.php'); ?>
+<?php require(__DIR__.'/functions/functions.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,7 +32,7 @@
   <body class="goto-here">
      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">E-Events</a>
+	      <a class="navbar-brand" href="index.php">E-Events</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -40,9 +40,7 @@
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
 				<li class="nav-item"><a href="events.php" class="nav-link">Events/Conferences</a></li>
-				<li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
-	        	<li class="nav-item"><a class="nav-link" href="checkout.php">Checkout</a></li>
-	        	<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+	    
 	        </ul>
 	      </div>
 	    </div>
@@ -53,7 +51,7 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Events/Conferences</span></p>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Events/Conferences</span></p>
             <h1 class="mb-0 bread">Events and Conferences</h1>
           </div>
         </div>
@@ -62,10 +60,14 @@
 
     <section class="ftco-section">
     	<div class="container">
-
+      <h1>EVENTS</h1><br>
     		<div class="row">
-    			<?php displayProducts(6)?>
-    		</div>
+    			<?php displayProducts(20)?>
+        </div>
+        <h1>Conferences</h1><br>
+        <div class="row">
+    			<?php displayConference(20)?>
+        </div>
     	</div>
     </section>
 

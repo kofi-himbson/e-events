@@ -1,6 +1,6 @@
 <?php
 require ('database/database.php');
-// session_start();
+session_start();
 // require ('../database/database.php');
 
 // class displayProducts{
@@ -12,10 +12,11 @@ function displayProducts($limit){
 		//if the number of rows is greater than 0
 	    if($result->num_rows>0){
 			$count = 0;
+			
 	    	//for each row, echo the following html code
 	       while ($row=$result->fetch_assoc() and $count < $limit){
 			   	$count = $count + 1;
-		       	echo '
+		       	echo'
                 <div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
     					<a href="product-single.php?event_id='.$row['event_id'].'" class="img-prod"><img class="img-fluid" src="images/'.$row['event_image'].'" alt="Colorlib Template">
@@ -70,7 +71,7 @@ if($result->num_rows>0){
 					<a href="#" class="mr-2" style="color: #000;">'.$row['tickets_available'].' <span style="color: #bbb;">Tickets available</span></a>
 				</p>
 				<p class="text-left">
-					<a href="#" class="mr-2" style="color: #000;">'.$row['tickets_sold'].' <span style="color: #bbb;">Sold</span></a>
+					<a href="#" class="mr-2" style="color: #000;">'.$row['tickets_left'].' <span style="color: #bbb;">left</span></a>
 				</p>
 			</div>
 			<p class="price"><span>GH¢'.$row['event_price'].'.00</span></p>
@@ -103,8 +104,7 @@ function addtocart(){
 	
     else if($connect->query($sql) === TRUE){
         echo "<script type='text/javascript'>
-        alert('Added to Cart');
-        window.location.replace(\"index.php\");
+        window.location.replace(\"checkout.php\");
         </script>"
         ;
         
@@ -149,16 +149,17 @@ function displayCartItems(){
 			$totalcost = $totalcost + ($row['event_price'] * $row['quantity']);
 			echo '
 		<tr class="text-center">
-			<td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+			<td class="product-remove"><a href="productremove.php?id='.$row['cart_id'].'"><span class="ion-ios-close"></span></a></td>
 			
 			<td class="image-prod"><div class="img" style="background-image:url(images/'.$row['event_image'].');"></div></td>
 			
 			<td class="product-name">
 				<h3>'.$row['event_name'].'</h3>
-				<p>Far far away, behind the word mountains, far from the countries</p>
+				<p>'.$row['event_desc'].'</p>
 			</td>
 			
 			<td class="price">GH¢'.$row['event_price'].'.00</td>
+			
 			
 			<td class="quantity">
 				<div class="input-group mb-3">
@@ -173,7 +174,7 @@ function displayCartItems(){
 		
 		}
 	}
-	return $totalcost;
+	
 }
 
 function add1ToCart(){
@@ -195,7 +196,7 @@ function add1ToCart(){
     else if($connect->query($sql) === TRUE){
         echo "<script type='text/javascript'>
         alert('Added to Cart');
-        window.location.replace(\"index.php\");
+        window.location.replace(\"checkout.php\");
         </script>"
         ;
         
@@ -209,3 +210,107 @@ function add1ToCart(){
 	}
 
 }
+
+function subtotal(){
+	$conn = openDatabase();
+	$sql = "select cart_id,sum(event_price*quantity) from event,cart where event.event_id=cart.event_id";
+	$result = $conn->query($sql);
+	$row = $result->fetch_assoc();
+	if ($result->num_rows > 0) {
+		echo '
+		<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+    				<div class="cart-total mb-3">
+    					<h3>Cart Totals</h3>
+    					<p class="d-flex">
+    						<span>Subtotal</span>
+    						<span>¢'.$row['sum(event_price*quantity)'].'</span>
+    					</p>
+    					<p class="d-flex total-price">
+    						<span>Total</span>
+    						<span>¢'.$row['sum(event_price*quantity)'].'</span>
+    					</p>
+    				</div>
+    				';
+		$_SESSION['price']=$row['sum(event_price*quantity)'];
+		$_SESSION['cart_id']=$row['cart_id'];
+}
+}
+
+function displayConference($limit){
+	//open the connection
+	$conn = openDatabase();
+	//sql query to get all the products from the database
+	$result = $conn->query("SELECT * FROM conference");
+	//if the number of rows is greater than 0
+	if($result->num_rows>0){
+		$count = 0;
+		
+		//for each row, echo the following html code
+	   while ($row=$result->fetch_assoc() and $count < $limit){
+			   $count = $count + 1;
+			   echo'
+			<div class="col-md-6 col-lg-3 ftco-animate">
+				<div class="product">
+					<a href="conf-single.php?conf_id='.$row['conf_id'].'" class="img-prod"><img class="img-fluid" src="images/'.$row['conf_image'].'" alt="Colorlib Template">
+
+						<div class="overlay"></div>
+					</a>
+					<div class="text py-3 pb-4 px-3 text-center">
+						<h3><a href="#">'.$row['conf_name'].'</a></h3>
+						<div class="d-flex">
+							<div class="pricing">
+								
+							</div>
+						</div>
+						<div class="bottom-area d-flex px-3">
+							<div class="m-auto d-flex">
+								<a href="conf-single.php?conf_id='.$row['conf_id'].'" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+									<span><i class="ion-ios-menu"></i></span>
+								</a>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+					';
+						  
+	   }
+   }
+   
+}
+
+function displayoneConference($conf_id){
+	//open the connection
+	$conn = openDatabase();
+	//sql query to get all the products from the database
+	$result = $conn->query("SELECT * FROM conference where conf_id=$conf_id");
+	//if the number of rows is greater than 0
+	if($result->num_rows>0){
+		//for each row, echo the following html code
+		while ($row=$result->fetch_assoc()) {
+		$_POST['id'] = $row['conf_id'];
+			echo '
+	<div class="col-lg-6 mb-5 ftco-animate">
+				<a href="images/'.$row['conf_image'].'" class="image-popup"><img src="images/'.$row['conf_image'].' " class="img-fluid" alt="Colorlib Template"></a>
+			</div>
+			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
+				<h3>'.$row['conf_name'].'</h3>
+				<div class="rating d-flex">
+					<p class="text-left mr-4">
+						<a href="#" class="mr-2" style="color: #000;">'.$row['conf_seats_available'].' <span style="color: #bbb;">Tickets available</span></a>
+					</p>
+					<p class="text-left">
+						<a href="#" class="mr-2" style="color: #000;">'.$row['conf_seats_left'].' <span style="color: #bbb;">left</span></a>
+					</p>
+				</div>
+				<p>'.$row['conf_desc'].'
+					</p>
+			
+					';
+						
+		}
+	}
+	
+	}
+

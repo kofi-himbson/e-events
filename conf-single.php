@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body class="goto-here">
-     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="index.php">E-Events</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,10 +39,8 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
-				<li class="nav-item"><a href="events.php" class="nav-link">Events/Conferences</a></li>
-				<li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
+				<li class="nav-item"><a href="events.php" class="nav-link">Events</a></li>
 	        	<li class="nav-item"><a class="nav-link" href="checkout.php">Checkout</a></li>
-	        	<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span class="icon-shopping_cart"></span></a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -53,47 +51,65 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Cart</span></p>
-            <h1 class="mb-0 bread">My Cart</h1>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span class="mr-2"><a href="index.php">Product</a></span> <span>Product Single</span></p>
+            <h1 class="mb-0 bread">Event Details</h1>
           </div>
         </div>
       </div>
     </div>
 
-    <section class="ftco-section ftco-cart">
-			<div class="container">
-				<div class="row">
-    			<div class="col-md-12 ftco-animate">
-    				<div class="cart-list">
-	    				<table class="table">
-						    <thead class="thead-primary">
-						      <tr class="text-center">
-						        <th>&nbsp;</th>
-						        <th>&nbsp;</th>
-						        <th>Product name</th>
-						        <th>Price</th>
-						        <th>Quantity</th>
-						        <th>Total</th>
-						      </tr>
-						    </thead>
-						    <tbody>
-							<?php displayCartItems()?>
-						    </tbody>
-						  </table>
-					  </div>
-    			</div>
-    		</div>
-    		<div class="row justify-content-end">
-    				
-				<?php subtotal() ?>
-				<p><a href="checkout.php" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
-    			</div>
-    		</div>
-			</div>
-		</section>
+	<section class="ftco-section">
+<div class="container">
+	<div class="row">
+			<?php	
+        displayoneConference($_GET['conf_id']);
+        $_SESSION['conf_id']=$_GET['conf_id'];
+               ?>
+		
+			<form method="post" class="row mt-4" action="conferencecheckout.php">
+							<div class="w-100"></div>
+							<div class="input-group col-md-6 d-flex mb-3">
+					<span class="input-group-btn mr-2">
+					
+						</span>
+					
+					</span>
+					
+					<div class="w-100"></div>
+					<br>
+				<p><input name="register" type="submit" class="btn btn-black py-3 px-5" value="Register for Conference"></p>
+			</form>
+				
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+</section>
 
 
-   <footer class="ftco-footer ftco-section">
+
+    <section class="ftco-section">
+    	<div class="container">
+				<div class="row justify-content-center mb-3 pb-3">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+          	<span class="subheading">Events</span>
+            <h2 class="mb-4">Similar Events</h2>
+            <
+          </div>
+        </div>   		
+    	</div>
+    	<div class="container">
+    		<div class="row">
+    			<?php displayConference(8) ?>
+	
+    		</div>
+    	</div>
+    </section>
+
+	
+    <footer class="ftco-footer ftco-section">
       <div class="container">
       	<div class="row">
       		<div class="mouse">
@@ -129,7 +145,6 @@
         </div>
       </div>
     </footer>
-  
     
   
 

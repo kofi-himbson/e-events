@@ -1,4 +1,4 @@
-<?php require(__DIR__.'../functions/functions.php'); ?>
+<?php require(__DIR__.'/functions/functions.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,7 +33,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">E-Events</a>
+	      <a class="navbar-brand" href="index.php">E-Events</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -41,9 +41,7 @@
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
 				<li class="nav-item"><a href="events.php" class="nav-link">Events</a></li>
-				<li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
-	        	<li class="nav-item"><a class="nav-link" href="checkout.php">Checkout</a></li>
-	        	<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+	        	
 	        </ul>
 	      </div>
 	    </div>
@@ -59,7 +57,7 @@
 
 	            <div class="col-md-12 ftco-animate text-center">
 	              <h1 class="mb-2">Find your events and shows here</h1>
-	              <h2 class="subheading mb-4">Buy tickets, rsvp and sign up</h2>
+	            
 	            </div>
 
 	          </div>
@@ -73,7 +71,7 @@
 
 	            <div class="col-sm-12 ftco-animate text-center">
   					<h1 class="mb-2">Find your events and shows here</h1>
-	            	<h2 class="subheading mb-4">Buy tickets, rsvp and sign up</h2>
+	            
 	            </div>
 
 	          </div>
@@ -90,7 +88,7 @@
           <div class="col-md-12 heading-section text-center ftco-animate">
           	<span class="subheading">Events</span>
             <h2 class="mb-4">Shows,concerts,Events and Conferences</h2>
-            <p>Find your way here</p>
+            <p>Popular Events</p>
 			
           </div>
         </div>   		

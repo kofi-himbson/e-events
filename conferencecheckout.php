@@ -1,4 +1,4 @@
-<?php require(__DIR__.'/functions/functions.php'); ?>
+<?php require(__DIR__.'/functions/functions.php') ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -40,9 +40,7 @@
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
 				<li class="nav-item"><a href="events.php" class="nav-link">Events/Conferences</a></li>
-				<li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
 	        	<li class="nav-item"><a class="nav-link" href="checkout.php">Checkout</a></li>
-	        	<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span class="icon-shopping_cart"></span></a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -53,44 +51,84 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Cart</span></p>
-            <h1 class="mb-0 bread">My Cart</h1>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Checkout</span></p>
+            <h1 class="mb-0 bread">Checkout</h1>
           </div>
         </div>
       </div>
     </div>
 
-    <section class="ftco-section ftco-cart">
-			<div class="container">
-				<div class="row">
-    			<div class="col-md-12 ftco-animate">
-    				<div class="cart-list">
-	    				<table class="table">
-						    <thead class="thead-primary">
-						      <tr class="text-center">
-						        <th>&nbsp;</th>
-						        <th>&nbsp;</th>
-						        <th>Product name</th>
-						        <th>Price</th>
-						        <th>Quantity</th>
-						        <th>Total</th>
-						      </tr>
-						    </thead>
-						    <tbody>
-							<?php displayCartItems()?>
-						    </tbody>
-						  </table>
-					  </div>
-    			</div>
-    		</div>
-    		<div class="row justify-content-end">
-    				
-				<?php subtotal() ?>
-				<p><a href="checkout.php" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
-    			</div>
-    		</div>
-			</div>
-		</section>
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-7 ftco-animate">
+						<form action="confconfirm.php" method="post" class="billing-form">
+							<h3 class="mb-4 billing-heading">Billing Details</h3>
+	          	<div class="row align-items-end">
+	          		<div class="col-md-6">
+	                <div class="form-group">
+	                	<label for="firstname">Full Name</label>
+	                  <input type="text" class="form-control" placeholder="" name="name">
+	                </div>
+	              </div>
+	              <div class="col-md-6">
+                </div>
+
+	              <div class="col-md-6">
+	                <div class="form-group">
+	                	<label for="emailaddress">Email Address</label>
+	                  <input type="text" class="form-control" placeholder="" name="email">
+	                </div>
+                </div>
+
+                <div class="col-md-6">
+	                <div class="form-group">
+	                	<label for="emailaddress">Mobile Number</label>
+	                  <input type="number" class="form-control" placeholder="eg.+23322444245" name="number">
+	                </div>
+                </div>
+
+	            </div>
+	         
+					</div>
+					
+					
+	          
+	          		<div class="cart-detail cart-total p-3 p-md-4">
+						 
+	          			
+				  </div>
+				  
+	          	<div class="col-md-12">
+	          		<div class="cart-detail p-3 p-md-4">
+	          			<h3 class="billing-heading mb-4">Payment Method</h3>
+									<div class="form-group">
+										<div class="col-md-12">
+											
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-md-12">
+											
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-md-12">
+											<div class="checkbox">
+											   <label><input type="checkbox" value="" class="mr-2"> I have read and accept the terms and conditions</label>
+											</div>
+										</div>
+									</div>
+									<p><button type="submit" class="btn btn-primary py-3 px-4">Register</button>
+								</div>
+								</form>
+	          	</div>
+	          </div>
+          </div> <!-- .col-md-8 -->
+        </div>
+      </div>
+    </section> <!-- .section -->
 
 
    <footer class="ftco-footer ftco-section">

@@ -1,4 +1,4 @@
-<?php require(__DIR__.'../functions/functions.php') ?>
+<?php require(__DIR__.'/functions/functions.php') ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,17 +32,13 @@
   <body class="goto-here">
      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">E-Events</a>
+	      <a class="navbar-brand" >E-Events</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
-				<li class="nav-item"><a href="events.php" class="nav-link">Events/Conferences</a></li>
-				<li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
-	        	<li class="nav-item"><a class="nav-link" href="checkout.php">Checkout</a></li>
-	        	<li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+	       
 	        </ul>
 	      </div>
 	    </div>
@@ -53,8 +49,15 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Checkout</span></p>
-            <h1 class="mb-0 bread">Checkout</h1>
+			  <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Checkout</span></p>
+			  <?
+			$connect = openDatabase();
+			  $event_id=$_SESSION['event_id'];
+			  $sql="select event_name from event where event_id=$event_id";
+			  $result=$connect->query($sql);
+			  $row=$result->fetch_assoc();
+			echo'<h1 class="mb-0 bread">Checkout for '. $row['event_name'] .'</h1>';
+			?>
           </div>
         </div>
       </div>
@@ -64,71 +67,52 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-xl-7 ftco-animate">
-						<form action="#" class="billing-form">
+						<form action="payment.php" method="post" class="billing-form">
 							<h3 class="mb-4 billing-heading">Billing Details</h3>
 	          	<div class="row align-items-end">
 	          		<div class="col-md-6">
 	                <div class="form-group">
-	                	<label for="firstname">Firt Name</label>
-	                  <input type="text" class="form-control" placeholder="">
+	                	<label for="firstname">First Name</label>
+	                  <input type="text" class="form-control" placeholder="" name="fname">
 	                </div>
 	              </div>
 	              <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="lastname">Last Name</label>
-	                  <input type="text" class="form-control" placeholder="">
+	                  <input type="text" class="form-control" placeholder="" name="lname">
 	                </div>
                 </div>
 
 	              <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="emailaddress">Email Address</label>
-	                  <input type="text" class="form-control" placeholder="">
+	                  <input type="text" class="form-control" placeholder="" name="email">
 	                </div>
                 </div>
 
 	            </div>
-	          </form><!-- END -->
+	         
 					</div>
-					<div class="col-xl-5">
-	          <div class="row mt-5 pt-3">
-	          	<div class="col-md-12 d-flex mb-5">
+					
+					
+	          
 	          		<div class="cart-detail cart-total p-3 p-md-4">
-	          			<h3 class="billing-heading mb-4">Cart Total</h3>
-	          			<p class="d-flex">
-		    						<span>Subtotal</span>
-		    						<span>$20.60</span>
-		    					</p>
-		    					<p class="d-flex">
-		    						<span>Delivery</span>
-		    						<span>$0.00</span>
-		    					</p>
-		    					<p class="d-flex">
-		    						<span>Discount</span>
-		    						<span>$3.00</span>
-		    					</p>
-		    					<hr>
-		    					<p class="d-flex total-price">
-		    						<span>Total</span>
-		    						<span>$17.60</span>
-		    					</p>
-								</div>
-	          	</div>
+						  <h3 class="">Cart Total</h3>
+						  <?php subtotal() ?>
+	          			
+				  </div>
+				  
 	          	<div class="col-md-12">
 	          		<div class="cart-detail p-3 p-md-4">
 	          			<h3 class="billing-heading mb-4">Payment Method</h3>
 									<div class="form-group">
 										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2">Airtel Money</label>
-											</div>
+											
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2">MTN Mobile Money</label>
-											</div>
+											
 										</div>
 									</div>
 
@@ -139,8 +123,9 @@
 											</div>
 										</div>
 									</div>
-									<p><a href="#"class="btn btn-primary py-3 px-4">Place an order</a></p>
+									<p><button type="submit" class="btn btn-primary py-3 px-4">Place an order</button>
 								</div>
+								</form>
 	          	</div>
 	          </div>
           </div> <!-- .col-md-8 -->
