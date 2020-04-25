@@ -60,11 +60,11 @@
 
     <section class="ftco-section">
     	<div class="container">
-      <h1>EVENTS</h1><br>
+      <h1>BUY YOUR TICKETS</h1><br>
     		<div class="row">
     			<?php displayProducts(20)?>
         </div>
-        <h1>Conferences</h1><br>
+        <h1>BOOK YOUR SEATS/RSVP</h1><br>
         <div class="row">
     			<?php displayConference(20)?>
         </div>
