@@ -14,6 +14,13 @@ require(__DIR__.'/functions/functions.php');
         //payment
         $random_number = rand();
         $curl = curl_init();
+        // If you are getting an error on the payment code, It may be due to the settings of your php
+        //  download cacert.pem and uncomment the three lines of code under
+          //Place  the cacert.pem in the right location 
+
+        // $certificate = "C:\wamp64\cacert.pem";
+        // curl_setopt($curl, CURLOPT_CAINFO, $certificate);
+        // curl_setopt($curl, CURLOPT_CAPATH, $certificate);
         $amount = $_SESSION['price'];  
         $currency = "GHS";
         $txref = "rave-$random_number"; // ensure you generate unique references per transaction.
