@@ -21,8 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `eventplatform`
 --
-CREATE DATABASE IF NOT EXISTS `eventplatform` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `eventplatform`;
+
+USE `id13438025_eventplatform`;
 
 -- --------------------------------------------------------
 

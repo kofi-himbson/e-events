@@ -32,7 +32,7 @@
   <body class="goto-here">
      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.php">E-Events</a>
+	      <a href="index.php" class="navbar-brand" >E-Events</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -50,9 +50,13 @@
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
 			  <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Checkout</span></p>
-			  <?php
-				echo '
-			 <h1 class="mb-0 bread">Checkout for '. eventName().'</h1>';
+			  <?
+			$connect = openDatabase();
+			  $event_id=$_SESSION['event_id'];
+			  $sql="select event_name from event where event_id=$event_id";
+			  $result=$connect->query($sql);
+			  $row=$result->fetch_assoc();
+			echo'<h1 class="mb-0 bread">Checkout for '. $row['event_name'] .'</h1>';
 			?>
           </div>
         </div>

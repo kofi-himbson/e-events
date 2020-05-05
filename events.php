@@ -40,6 +40,8 @@
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
 				<li class="nav-item"><a href="events.php" class="nav-link">Events/Conferences</a></li>
+        <li class="nav-item"><a href="login/index.html" class="nav-link">Admin</a></li>
+
 	    
 	        </ul>
 	      </div>
@@ -60,11 +62,11 @@
 
     <section class="ftco-section">
     	<div class="container">
-      <h1>BUY YOUR TICKETS</h1><br>
+      <h1>EVENTS</h1><br>
     		<div class="row">
     			<?php displayProducts(20)?>
         </div>
-        <h1>BOOK YOUR SEATS/RSVP</h1><br>
+        <h1>Conferences</h1><br>
         <div class="row">
     			<?php displayConference(20)?>
         </div>
